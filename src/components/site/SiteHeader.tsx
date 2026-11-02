@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Instagram, Menu, MessageCircle, X } from "lucide-react";
 import logo from "@/assets/widego-logo.png";
 import { INSTAGRAM_URL, WHATSAPP_URL, useI18n, type DictKey } from "@/lib/i18n";
@@ -19,7 +19,7 @@ export function LangSwitch({ className }: { className?: string }) {
     <button
       type="button"
       onClick={() => setLang(lang === "en" ? "ar" : "en")}
-      className={cn("rounded-lg border border-current/30 px-3 py-1.5 text-xs font-bold transition hover:bg-accent hover:text-accent-foreground hover:border-accent", className)}
+      className={cn("rounded-full border border-foreground/30 px-3.5 py-1.5 text-xs font-bold transition hover:bg-foreground hover:text-background", className)}
       aria-label="Switch language"
     >
       {lang === "en" ? "العربية" : "English"}
@@ -27,29 +27,15 @@ export function LangSwitch({ className }: { className?: string }) {
   );
 }
 
-export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
+export function SiteHeader(_props: { overlay?: boolean }) {
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 40);
-    on();
-    window.addEventListener("scroll", on);
-    return () => window.removeEventListener("scroll", on);
-  }, []);
-  const solid = !overlay || scrolled || open;
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        solid ? "border-b border-border bg-background/95 text-foreground backdrop-blur-lg" : "bg-transparent text-cream",
-      )}
-    >
-      {!solid && <div className="bg-header-fade pointer-events-none absolute inset-x-0 top-0 h-28" />}
-      <div className="container-x relative flex h-[72px] items-center justify-between gap-4">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background text-foreground">
+      <div className="container-x flex h-[72px] items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Widego Adventures" width={48} height={48} className="h-12 w-12 rounded-full ring-2 ring-cream/80" />
+          <img src={logo} alt="Widego Adventures" width={44} height={44} className="h-11 w-11 rounded-full" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
@@ -57,15 +43,15 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              className="rounded-lg px-4 py-2 text-sm font-semibold opacity-85 transition hover:opacity-100"
-              activeProps={{ className: "!opacity-100 text-accent" }}
+              className="rounded-full px-4 py-2 text-[0.95rem] font-semibold text-foreground/70 transition hover:bg-secondary hover:text-foreground"
+              activeProps={{ className: "!bg-secondary !text-foreground" }}
             >
               {t(l.k)}
             </Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="hidden rounded-full p-2 transition hover:text-accent sm:block">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="hidden rounded-full p-2 text-foreground/70 transition hover:text-accent sm:block">
             <Instagram className="h-5 w-5" />
           </a>
           <LangSwitch />
@@ -73,7 +59,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-accent-foreground shadow-glow transition hover:-translate-y-0.5 md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-bold text-accent-foreground transition hover:brightness-90 md:inline-flex"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>
@@ -85,11 +71,11 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       {open && (
         <nav className="container-x flex flex-col gap-1 pb-6 lg:hidden">
           {links.map((l) => (
-            <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 text-lg font-semibold hover:bg-muted">
+            <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="rounded-lg px-4 py-3 text-lg font-semibold hover:bg-secondary">
               {t(l.k)}
             </Link>
           ))}
-          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="mt-2 rounded-xl bg-accent px-4 py-3 text-center font-bold text-accent-foreground">
+          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="mt-2 rounded-full bg-accent px-4 py-3 text-center font-bold text-accent-foreground">
             WhatsApp +971 56 699 9901
           </a>
         </nav>

@@ -26,7 +26,7 @@ function About() {
         <p className="text-muted-foreground">{ar ? "نصمم تجارب آمنة ومدروسة لكل المستويات." : "We design thoughtful, safe experiences for every level, and plan custom trips across the UAE, Oman and the wider GCC. (Placeholder story — replace with your own words.)"}</p>
       </section>
       <section className="container-x grid gap-4 pb-24 md:grid-cols-3">
-        {[images.summit, images.desert, images.kayak].map((s, i) => <img key={i} src={s} alt="" loading="lazy" className="aspect-[3/4] w-full rounded-2xl object-cover" />)}
+        {[images.summit, images.desert, images.kayak].map((s, i) => <img key={i} src={s} alt="" loading="lazy" className="aspect-[3/4] w-full rounded-lg object-cover" />)}
       </section>
     </>
   );

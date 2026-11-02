@@ -38,7 +38,7 @@ export function InquiryForm({ fields, context, title }: { fields: FieldKey[]; co
 
   if (sent) {
     return (
-      <div className="rounded-lg border border-border bg-card p-8 text-center">
+      <div className="rounded-lg border border-border bg-card p-8 text-center shadow-card">
         <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
         <h3 className="mt-4 text-2xl font-semibold">{t("form.thanks")}</h3>
         <p className="mt-2 text-muted-foreground">{t("form.thanksSub")}</p>
@@ -50,7 +50,7 @@ export function InquiryForm({ fields, context, title }: { fields: FieldKey[]; co
   }
 
   return (
-    <form onSubmit={submit} className="rounded-lg border border-border bg-card p-6 md:p-8" noValidate>
+    <form onSubmit={submit} className="rounded-lg border border-border bg-card p-6 shadow-card md:p-8" noValidate>
       {title && <h3 className="mb-6 text-2xl font-semibold">{title}</h3>}
       <div className="grid gap-4 sm:grid-cols-2">
         {fields.map((f) => {

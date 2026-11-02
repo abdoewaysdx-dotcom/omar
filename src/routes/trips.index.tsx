@@ -55,7 +55,7 @@ function Trips() {
           {sel(t("trips.duration"), dur, setDur, durations)}
           {sel(t("trips.difficulty"), diff, setDiff, difficultyLabels)}
         </div>
-        <p className="mt-6 text-sm font-bold text-muted-foreground">{list.length} {lang === "ar" ? "رحلة" : list.length === 1 ? "trip" : "trips"}</p>
+        <p className="mt-6 text-sm font-extrabold text-muted-foreground">{list.length} {lang === "ar" ? "رحلة" : list.length === 1 ? "trip" : "trips"}</p>
         {list.length ? (
           <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{list.map((tr) => <TripCard key={tr.slug} trip={tr} />)}</div>
         ) : (

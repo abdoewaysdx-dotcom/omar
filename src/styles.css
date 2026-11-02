@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Source Sans 3", "Tajawal", system-ui, sans-serif;
-  --font-sans: "Source Sans 3", "Tajawal", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Tajawal", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Tajawal", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -42,37 +42,37 @@
 }
 
 :root {
-  /* Flat, Adobe-style system: white canvas, charcoal tiles, one CTA accent (logo orange) */
-  --radius: 1.25rem;
-  --cream: oklch(0.99 0.002 250);
-  --charcoal: oklch(0.27 0.012 240);
-  --teal-deep: oklch(0.28 0.02 225);
-  --gold: oklch(0.8 0.14 62);
-  --whatsapp: oklch(0.55 0.14 152);
-  --background: oklch(1 0 0);
+  /* Widego brand — sampled from the logo: ink-teal #1b3534, sunset orange #ea6528, sun yellow #fabd29, cream #f4efd4 */
+  --radius: 1rem;
+  --cream: #f4efd4;
+  --charcoal: #14201f;
+  --teal-deep: #1b3534;
+  --gold: #fabd29;
+  --whatsapp: #1f9d55;
+  --background: #fbf8ee;
   --foreground: var(--charcoal);
-  --card: oklch(1 0 0);
+  --card: #fffdf7;
   --card-foreground: var(--charcoal);
-  --popover: oklch(1 0 0);
+  --popover: #fffdf7;
   --popover-foreground: var(--charcoal);
   --primary: var(--teal-deep);
   --primary-foreground: var(--cream);
-  --secondary: oklch(0.962 0.002 250);
+  --secondary: #f1ecd8;
   --secondary-foreground: var(--charcoal);
-  --muted: oklch(0.962 0.002 250);
-  --muted-foreground: oklch(0.5 0.006 250);
-  --accent: oklch(0.6 0.2 40);
-  --accent-foreground: oklch(0.99 0.01 85);
+  --muted: #f1ecd8;
+  --muted-foreground: #5a6a68;
+  --accent: #ea6528;
+  --accent-foreground: #fffdf7;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: var(--cream);
-  --border: oklch(0.89 0.002 250);
-  --input: oklch(0.82 0.003 250);
-  --ring: oklch(0.6 0.2 40);
-  --gradient-hero: linear-gradient(180deg, oklch(0.15 0.02 235 / 0.35) 0%, oklch(0.15 0.02 235 / 0.1) 35%, oklch(0.13 0.02 235 / 0.85) 100%);
-  --gradient-side: linear-gradient(90deg, oklch(0.13 0.02 235 / 0.55) 0%, oklch(0.13 0.02 235 / 0) 70%);
+  --border: #e4ddc3;
+  --input: #d6cfb4;
+  --ring: #ea6528;
+  --gradient-hero: linear-gradient(180deg, rgb(14 28 27 / 0.55) 0%, rgb(14 28 27 / 0.15) 38%, rgb(14 28 27 / 0.9) 100%);
+  --gradient-side: linear-gradient(90deg, rgb(14 28 27 / 0.7) 0%, rgb(14 28 27 / 0) 70%);
   --gradient-sunset: linear-gradient(120deg, var(--accent), var(--gold));
-  --shadow-glow-value: 0 0 #0000;
-  --shadow-card-value: 0 0 #0000;
+  --shadow-glow-value: 0 12px 28px -10px color-mix(in oklab, var(--accent) 65%, transparent);
+  --shadow-card-value: 0 1px 2px rgb(27 53 52 / 0.08), 0 18px 36px -22px rgb(27 53 52 / 0.45);
 }
 
 @layer base {
@@ -84,7 +84,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; font-weight: 700; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; font-weight: 800; }
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { font-family: "Tajawal", sans-serif; letter-spacing: 0; font-weight: 800; }
 }
 
@@ -99,11 +99,11 @@
   color: transparent;
 }
 @utility eyebrow {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted-foreground);
+  color: var(--accent);
 }
 @utility container-x {
   margin-inline: auto;
@@ -114,9 +114,23 @@
 }
 @utility topo {
   background-color: var(--teal-deep);
+  background-image: radial-gradient(circle at 90% 0%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 45%),
+    radial-gradient(circle at 5% 100%, color-mix(in oklab, var(--gold) 12%, transparent), transparent 40%);
 }
 
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @utility animate-rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes slowzoom { from { transform: scale(1.08); } to { transform: scale(1); } }
 @utility animate-slowzoom { animation: slowzoom 10s ease-out both; }
+
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@utility animate-float { animation: float 7s ease-in-out infinite; }
+@utility glass-nav {
+  background-color: rgb(27 53 52 / 0.72);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-rise, .animate-slowzoom { animation: none !important; }
+  html { scroll-behavior: auto; }
+}

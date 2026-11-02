@@ -1,0 +1,120 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", "Tajawal", Georgia, serif;
+  --font-sans: "Manrope", "Tajawal", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-charcoal: var(--charcoal);
+  --color-teal-deep: var(--teal-deep);
+  --color-whatsapp: var(--whatsapp);
+  --shadow-glow: var(--shadow-glow-value);
+  --shadow-card: var(--shadow-card-value);
+}
+
+:root {
+  --radius: 1rem;
+  --cream: oklch(0.965 0.025 85);
+  --charcoal: oklch(0.22 0.012 240);
+  --teal-deep: oklch(0.3 0.06 205);
+  --gold: oklch(0.82 0.15 82);
+  --whatsapp: oklch(0.58 0.15 150);
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+  --card: oklch(0.985 0.012 85);
+  --card-foreground: var(--charcoal);
+  --popover: oklch(0.985 0.012 85);
+  --popover-foreground: var(--charcoal);
+  --primary: oklch(0.43 0.075 200);
+  --primary-foreground: var(--cream);
+  --secondary: oklch(0.92 0.035 82);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.93 0.025 85);
+  --muted-foreground: oklch(0.45 0.02 240);
+  --accent: oklch(0.64 0.17 45);
+  --accent-foreground: oklch(0.99 0.01 85);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.86 0.03 80);
+  --input: oklch(0.86 0.03 80);
+  --ring: oklch(0.64 0.17 45);
+  --gradient-hero: linear-gradient(180deg, oklch(0.2 0.04 220 / 0.55) 0%, oklch(0.2 0.04 220 / 0.15) 40%, oklch(0.18 0.04 220 / 0.85) 100%);
+  --gradient-sunset: linear-gradient(120deg, var(--accent), var(--gold));
+  --shadow-glow-value: 0 12px 30px -10px color-mix(in oklab, var(--accent) 60%, transparent);
+  --shadow-card-value: 0 20px 40px -24px color-mix(in oklab, var(--teal-deep) 55%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { font-family: "Tajawal", sans-serif; letter-spacing: 0; font-weight: 800; }
+}
+
+@utility bg-hero-overlay { background-image: var(--gradient-hero); }
+@utility bg-sunset { background-image: var(--gradient-sunset); }
+@utility text-sunset {
+  background-image: var(--gradient-sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) { padding-inline: 2rem; }
+}
+@utility topo {
+  background-color: var(--teal-deep);
+  background-image: radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 45%),
+    radial-gradient(circle at 85% 80%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 50%);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@utility animate-rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes slowzoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+@utility animate-slowzoom { animation: slowzoom 8s ease-out both; }

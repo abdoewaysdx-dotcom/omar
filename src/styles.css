@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Fraunces", "Tajawal", Georgia, serif;
-  --font-sans: "Manrope", "Tajawal", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Tajawal", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Tajawal", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -42,35 +42,37 @@
 }
 
 :root {
-  --radius: 1rem;
-  --cream: oklch(0.965 0.025 85);
-  --charcoal: oklch(0.22 0.012 240);
-  --teal-deep: oklch(0.3 0.06 205);
-  --gold: oklch(0.82 0.15 82);
+  /* Widego brand — derived from the logo: deep ink-teal + sunset orange */
+  --radius: 0.75rem;
+  --cream: oklch(0.985 0.004 90);
+  --charcoal: oklch(0.2 0.03 225);
+  --teal-deep: oklch(0.26 0.045 225);
+  --gold: oklch(0.8 0.14 62);
   --whatsapp: oklch(0.58 0.15 150);
-  --background: var(--cream);
+  --background: oklch(0.982 0.004 90);
   --foreground: var(--charcoal);
-  --card: oklch(0.985 0.012 85);
+  --card: oklch(1 0 0);
   --card-foreground: var(--charcoal);
-  --popover: oklch(0.985 0.012 85);
+  --popover: oklch(1 0 0);
   --popover-foreground: var(--charcoal);
-  --primary: oklch(0.43 0.075 200);
+  --primary: var(--teal-deep);
   --primary-foreground: var(--cream);
-  --secondary: oklch(0.92 0.035 82);
+  --secondary: oklch(0.955 0.01 225);
   --secondary-foreground: var(--charcoal);
-  --muted: oklch(0.93 0.025 85);
-  --muted-foreground: oklch(0.45 0.02 240);
-  --accent: oklch(0.64 0.17 45);
+  --muted: oklch(0.955 0.01 225);
+  --muted-foreground: oklch(0.46 0.025 225);
+  --accent: oklch(0.66 0.19 45);
   --accent-foreground: oklch(0.99 0.01 85);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: var(--cream);
-  --border: oklch(0.86 0.03 80);
-  --input: oklch(0.86 0.03 80);
-  --ring: oklch(0.64 0.17 45);
-  --gradient-hero: linear-gradient(180deg, oklch(0.2 0.04 220 / 0.55) 0%, oklch(0.2 0.04 220 / 0.15) 40%, oklch(0.18 0.04 220 / 0.85) 100%);
+  --border: oklch(0.91 0.01 225);
+  --input: oklch(0.88 0.012 225);
+  --ring: oklch(0.66 0.19 45);
+  --gradient-hero: linear-gradient(180deg, oklch(0.18 0.04 225 / 0.55) 0%, oklch(0.18 0.04 225 / 0.2) 32%, oklch(0.16 0.045 225 / 0.92) 100%);
+  --gradient-side: linear-gradient(90deg, oklch(0.16 0.045 225 / 0.7) 0%, oklch(0.16 0.045 225 / 0) 65%);
   --gradient-sunset: linear-gradient(120deg, var(--accent), var(--gold));
-  --shadow-glow-value: 0 12px 30px -10px color-mix(in oklab, var(--accent) 60%, transparent);
-  --shadow-card-value: 0 20px 40px -24px color-mix(in oklab, var(--teal-deep) 55%, transparent);
+  --shadow-glow-value: 0 10px 24px -10px color-mix(in oklab, var(--accent) 65%, transparent);
+  --shadow-card-value: 0 1px 2px color-mix(in oklab, var(--teal-deep) 10%, transparent), 0 14px 32px -20px color-mix(in oklab, var(--teal-deep) 40%, transparent);
 }
 
 @layer base {
@@ -82,11 +84,13 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; font-weight: 800; }
   [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { font-family: "Tajawal", sans-serif; letter-spacing: 0; font-weight: 800; }
 }
 
 @utility bg-hero-overlay { background-image: var(--gradient-hero); }
+@utility bg-hero-side { background-image: var(--gradient-side); }
+@utility bg-header-fade { background-image: linear-gradient(180deg, oklch(0.16 0.045 225 / 0.65), transparent); }
 @utility bg-sunset { background-image: var(--gradient-sunset); }
 @utility text-sunset {
   background-image: var(--gradient-sunset);
@@ -96,8 +100,8 @@
 }
 @utility eyebrow {
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
 }
@@ -110,11 +114,10 @@
 }
 @utility topo {
   background-color: var(--teal-deep);
-  background-image: radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 45%),
-    radial-gradient(circle at 85% 80%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 50%);
+  background-image: radial-gradient(circle at 90% 0%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 45%);
 }
 
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @utility animate-rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes slowzoom { from { transform: scale(1.08); } to { transform: scale(1); } }
-@utility animate-slowzoom { animation: slowzoom 8s ease-out both; }
+@utility animate-slowzoom { animation: slowzoom 10s ease-out both; }

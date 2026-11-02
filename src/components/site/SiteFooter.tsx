@@ -10,7 +10,7 @@ export function SiteFooter() {
       <div className="container-x grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <img src={logo} alt="Widego Adventures" width={80} height={80} loading="lazy" className="h-20 w-20 rounded-full" />
-          <p className="mt-5 max-w-sm text-cream/75">{t("footer.tag")}</p>
+          <p className="mt-5 max-w-sm text-cream/70">{t("footer.tag")}</p>
         </div>
         <div>
           <h4 className="eyebrow !text-gold">{t("footer.explore")}</h4>

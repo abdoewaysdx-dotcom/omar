@@ -19,7 +19,7 @@ export function LangSwitch({ className }: { className?: string }) {
     <button
       type="button"
       onClick={() => setLang(lang === "en" ? "ar" : "en")}
-      className={cn("rounded-full border border-current/30 px-3 py-1.5 text-xs font-bold transition hover:bg-accent hover:text-accent-foreground hover:border-accent", className)}
+      className={cn("rounded-lg border border-current/30 px-3 py-1.5 text-xs font-bold transition hover:bg-accent hover:text-accent-foreground hover:border-accent", className)}
       aria-label="Switch language"
     >
       {lang === "en" ? "العربية" : "English"}
@@ -43,12 +43,13 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        solid ? "bg-background/90 text-foreground shadow-card backdrop-blur-lg" : "bg-transparent text-cream",
+        solid ? "border-b border-border bg-background/95 text-foreground backdrop-blur-lg" : "bg-transparent text-cream",
       )}
     >
-      <div className="container-x flex h-20 items-center justify-between gap-4">
+      {!solid && <div className="bg-header-fade pointer-events-none absolute inset-x-0 top-0 h-28" />}
+      <div className="container-x relative flex h-[72px] items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Widego Adventures" width={56} height={56} className="h-14 w-14 rounded-full" />
+          <img src={logo} alt="Widego Adventures" width={48} height={48} className="h-12 w-12 rounded-full ring-2 ring-cream/80" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
@@ -56,7 +57,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
               key={l.to}
               to={l.to}
               activeOptions={{ exact: l.to === "/" }}
-              className="rounded-full px-4 py-2 text-sm font-semibold opacity-85 transition hover:opacity-100"
+              className="rounded-lg px-4 py-2 text-sm font-semibold opacity-85 transition hover:opacity-100"
               activeProps={{ className: "!opacity-100 text-accent" }}
             >
               {t(l.k)}
@@ -72,7 +73,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-bold text-accent-foreground shadow-glow transition hover:-translate-y-0.5 md:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-bold text-accent-foreground shadow-glow transition hover:-translate-y-0.5 md:inline-flex"
           >
             <MessageCircle className="h-4 w-4" /> WhatsApp
           </a>

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle } from "lucide-react";
-import logo from "@/assets/widego-logo.png.asset.json";
+import logo from "@/assets/widego-logo.png";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, WHATSAPP_URL, useI18n } from "@/lib/i18n";
 
 export function SiteFooter() {
@@ -9,7 +9,7 @@ export function SiteFooter() {
     <footer className="topo text-cream">
       <div className="container-x grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
-          <img src={logo.url} alt="Widego Adventures" width={80} height={80} loading="lazy" className="h-20 w-20 rounded-full" />
+          <img src={logo} alt="Widego Adventures" width={80} height={80} loading="lazy" className="h-20 w-20 rounded-full" />
           <p className="mt-5 max-w-sm text-cream/75">{t("footer.tag")}</p>
         </div>
         <div>

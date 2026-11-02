@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Instagram, Menu, MessageCircle, X } from "lucide-react";
-import logo from "@/assets/widego-logo.png.asset.json";
+import logo from "@/assets/widego-logo.png";
 import { INSTAGRAM_URL, WHATSAPP_URL, useI18n, type DictKey } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -48,7 +48,7 @@ export function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     >
       <div className="container-x flex h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src={logo.url} alt="Widego Adventures" width={56} height={56} className="h-14 w-14 rounded-full" />
+          <img src={logo} alt="Widego Adventures" width={56} height={56} className="h-14 w-14 rounded-full" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
